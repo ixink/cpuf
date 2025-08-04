@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPUF Admin Panel</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <!-- Notification -->
+  <div id="notification" class="fixed top-4 right-4 p-4 rounded-lg text-white hidden z-50">
+    <span id="notification-message"></span>
+    <button id="close-notification" class="ml-4 text-white">✕</button>
+  </div>
+
+  <!-- Admin Login -->
+  <section id="admin-login" class="min-h-screen flex items-center justify-center px-4">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+      <h2 class="text-xl md:text-2xl font-bold mb-4 text-center">Admin Login</h2>
+      <form id="login-form" class="space-y-4">
+        <input type="text" id="username" placeholder="Username" class="w-full p-2 border rounded" required>
+        <input type="password" id="password" placeholder="Password" class="w-full p-2 border rounded" required>
+        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded w-full">Login</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Admin Dashboard -->
+  <section id="admin-dashboard" class="hidden py-8">
+    <header class="bg-blue-500 text-white p-4 sticky top-0 z-40">
+      <div class="container mx-auto flex justify-between items-center">
+        <h2 class="text-xl md:text-2xl font-bold">Admin Dashboard</h2>
+        <!-- Desktop Logout Button -->
+        <button id="logout-btn" class="hidden md:block bg-red-500 text-white py-2 px-4 rounded hidden">Logout</button>
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+      <!-- Mobile Navigation -->
+      <nav id="mobile-menu" class="hidden md:hidden bg-blue-600 text-white flex-col p-4 space-y-2">
+        <button data-tab="logo" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded w-full text-left">Manage Logo</button>
+        <button data-tab="news" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded w-full text-left">Manage News</button>
+        <button data-tab="events" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded w-full text-left">Manage Events</button>
+        <button data-tab="resources" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded w-full text-left">Manage Resources</button>
+        <button data-tab="polls" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded w-full text-left">Manage Polls</button>
+        <button data-tab="analytics" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded w-full text-left">Analytics</button>
+        <button data-tab="members" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded w-full text-left">Members</button>
+        <button data-tab="donations" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded w-full text-left">Donations</button>
+        <button data-tab="join-events" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded w-full text-left">Event Joins</button>
+        <button id="logout-btn-mobile" class="bg-red-500 text-white py-2 px-4 rounded w-full text-left">Logout</button>
+      </nav>
+    </header>
+    <div class="container mx-auto px-4">
+      <!-- Desktop Tab Navigation -->
+      <div class="hidden md:flex space-x-2 md:space-x-4 mb-6 flex-wrap">
+        <button data-tab="logo" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded">Manage Logo</button>
+        <button data-tab="news" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded">Manage News</button>
+        <button data-tab="events" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded">Manage Events</button>
+        <button data-tab="resources" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded">Manage Resources</button>
+        <button data-tab="polls" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded">Manage Polls</button>
+        <button data-tab="analytics" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded">Analytics</button>
+        <button data-tab="members" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded">Members</button>
+        <button data-tab="donations" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded">Donations</button>
+        <button data-tab="join-events" class="tab-btn bg-blue-500 text-white py-2 px-4 rounded">Event Joins</button>
+      </div>
+
+      <!-- Logo Management -->
+      <div id="logo-section" class="management-section">
+        <h3 class="text-xl md:text-2xl font-semibold mb-4">Manage Logo</h3>
+        <form id="logo-form" class="space-y-4 mb-6">
+          <input type="file" id="logo-file" accept="image/*" class="w-full p-2 border rounded">
+          <input type="text" id="logo-url" placeholder="Or enter logo URL" class="w-full p-2 border rounded">
+          <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded w-full md:w-auto">Update Logo</button>
+        </form>
+      </div>
+
+      <!-- News Management -->
+      <div id="news-section" class="management-section hidden">
+        <h3 class="text-xl md:text-2xl font-semibold mb-4">Manage News</h3>
+        <form id="news-form" class="space-y-4 mb-6">
+          <input type="hidden" id="news-id">
+          <input type="text" id="news-title" placeholder="Title" class="w-full p-2 border rounded" required>
+          <input type="date" id="news-date" class="w-full p-2 border rounded" required>
+          <textarea id="news-description" placeholder="Description" class="w-full p-2 border rounded" required></textarea>
+          <input type="file" id="news-image" accept="image/*" class="w-full p-2 border rounded">
+          <input type="text" id="news-image-url" placeholder="Or enter image URL" class="w-full p-2 border rounded">
+          <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded w-full sm:w-auto">Save News</button>
+            <button type="button" id="clear-news-form" class="bg-gray-500 text-white py-2 px-4 rounded w-full sm:w-auto">Clear</button>
+          </div>
+        </form>
+        <div id="news-list"></div>
+      </div>
+
+      <!-- Events Management -->
+      <div id="events-section" class="management-section hidden">
+        <h3 class="text-xl md:text-2xl font-semibold mb-4">Manage Events</h3>
+        <form id="event-form" class="space-y-4 mb-6">
+          <input type="hidden" id="event-id">
+          <input type="text" id="event-title" placeholder="Title" class="w-full p-2 border rounded" required>
+          <input type="date" id="event-date" class="w-full p-2 border rounded" required>
+          <textarea id="event-description" placeholder="Description" class="w-full p-2 border rounded" required></textarea>
+          <input type="file" id="event-image" accept="image/*" class="w-full p-2 border rounded">
+          <input type="text" id="event-image-url" placeholder="Or enter image URL" class="w-full p-2 border rounded">
+          <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded w-full sm:w-auto">Save Event</button>
+            <button type="button" id="clear-event-form" class="bg-gray-500 text-white py-2 px-4 rounded w-full sm:w-auto">Clear</button>
+          </div>
+        </form>
+        <div id="event-list"></div>
+      </div>
+
+      <!-- Resources Management -->
+      <div id="resources-section" class="management-section hidden">
+        <h3 class="text-xl md:text-2xl font-semibold mb-4">Manage Resources</h3>
+        <form id="resource-form" class="space-y-4 mb-6">
+          <input type="hidden" id="resource-id">
+          <input type="text" id="resource-title" placeholder="Title" class="w-full p-2 border rounded" required>
+          <textarea id="resource-description" placeholder="Description" class="w-full p-2 border rounded" required></textarea>
+          <input type="file" id="resource-pdf" accept="application/pdf" class="w-full p-2 border rounded">
+          <input type="text" id="resource-pdf-url" placeholder="Or enter PDF URL" class="w-full p-2 border rounded">
+          <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded w-full sm:w-auto">Save Resource</button>
+            <button type="button" id="clear-resource-form" class="bg-gray-500 text-white py-2 px-4 rounded w-full sm:w-auto">Clear</button>
+          </div>
+        </form>
+        <div id="resource-list"></div>
+      </div>
+
+      <!-- Polls Management -->
+      <div id="polls-section" class="management-section hidden">
+        <h3 class="text-xl md:text-2xl font-semibold mb-4">Manage Polls</h3>
+        <form id="poll-form" class="space-y-4 mb-6">
+          <input type="hidden" id="poll-id">
+          <input type="text" id="poll-question" placeholder="Question" class="w-full p-2 border rounded" required>
+          <textarea id="poll-options" placeholder="Options (comma-separated)" class="w-full p-2 border rounded" required></textarea>
+          <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded w-full sm:w-auto">Save Poll</button>
+            <button type="button" id="clear-poll-form" class="bg-gray-500 text-white py-2 px-4 rounded w-full sm:w-auto">Clear</button>
+          </div>
+        </form>
+        <div id="poll-list"></div>
+      </div>
+
+      <!-- Analytics -->
+      <div id="analytics-section" class="management-section hidden">
+        <h3 class="text-xl md:text-2xl font-semibold mb-4">Analytics</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div class="bg-white p-4 rounded shadow">
+            <h4 class="font-semibold">Total Members</h4>
+            <p id="total-members">0</p>
+          </div>
+          <div class="bg-white p-4 rounded shadow">
+            <h4 class="font-semibold">Total Event Joins</h4>
+            <p id="total-event-joins">0</p>
+          </div>
+          <div class="bg-white p-4 rounded shadow">
+            <h4 class="font-semibold">Total Donations</h4>
+            <p id="total-donations">0</p>
+          </div>
+          <div class="bg-white p-4 rounded shadow">
+            <h4 class="font-semibold">Total Votes</h4>
+            <p id="total-votes">0</p>
+          </div>
+        </div>
+        <canvas id="eventJoinChart" class="max-w-full mx-auto"></canvas>
+      </div>
+
+      <!-- Members -->
+      <div id="members-section" class="management-section hidden">
+        <h3 class="text-xl md:text-2xl font-semibold mb-4">Members</h3>
+        <div id="member-list"></div>
+      </div>
+
+      <!-- Donations -->
+      <div id="donations-section" class="management-section hidden">
+        <h3 class="text-xl md:text-2xl font-semibold mb-4">Donations</h3>
+        <div id="donation-list"></div>
+      </div>
+
+      <!-- Event Joins -->
+      <div id="join-events-section" class="management-section hidden">
+        <h3 class="text-xl md:text-2xl font-semibold mb-4">Event Joins</h3>
+        <div id="join-event-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
