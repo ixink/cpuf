@@ -11,10 +11,10 @@ from dotenv import load_dotenv
 
 app = Flask(__name__, static_folder="public", static_url_path="")
 CORS(app, origins=[os.getenv("FRONTEND_URL", "http://localhost:3000")])
-
+raw_password = os.getenv("ADMIN_PASSWORD")
 # Load environment variables
 load_dotenv()
-JWT_SECRET = os.getenv("JWT_SECRET", "your_jwt_secret_here")
+JWT_SECRET = os.getenv("JWT_SECRET", "your_jwt_secret_her")
 UPLOAD_FOLDER = "public/uploads"
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "pdf"}
 
@@ -48,7 +48,7 @@ def write_db(data):
 def init_admin():
     data = read_db()
     if not any(admin["username"] == "admin" for admin in data["admins"]):
-        hashed_password = bcrypt.hashpw("admin123".encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+        hashed_password = bcrypt.hashpw(raw_password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
         data["admins"].append({
             "id": str(uuid4()),
             "username": "admin",
@@ -540,4 +540,5 @@ def get_analytics():
 
 # Start server
 if __name__ == "__main__":
+
     app.run(port=int(os.getenv("PORT", 3000)), debug=True)
