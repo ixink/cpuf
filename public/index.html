@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="header.title">CPUF | Combined Private University Forum</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <!-- Notification -->
+  <div id="notification" class="fixed top-4 right-4 p-4 rounded-lg text-white hidden z-50">
+    <span id="notification-message"></span>
+    <button id="close-notification" class="ml-4 text-white">✕</button>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-blue-500 text-white p-4 sticky top-0 z-40">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center">
+        <img id="party-logo" src="" alt="CPUF Logo" class="h-12 mr-4 hidden">
+        <h1 class="text-xl md:text-2xl font-bold" data-i18n="header.title">Combined Private University Forum</h1>
+      </div>
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex space-x-4 items-center">
+        <a href="#hero" class="hover:underline" data-i18n="nav.home">Home</a>
+        <a href="#news" class="hover:underline" data-i18n="nav.news">News</a>
+        <a href="#events" class="hover:underline" data-i18n="nav.events">Events</a>
+        <a href="#register" class="hover:underline" data-i18n="nav.register">Register</a>
+        <a href="#library" class="hover:underline" data-i18n="nav.library">Library</a>
+        <a href="#poll" class="hover:underline" data-i18n="nav.poll">Poll</a>
+        <button id="donate-btn" class="bg-white text-blue-500 px-4 py-2 rounded" data-i18n="nav.donate">Donate</button>
+        <select id="language-switch" class="bg-white text-blue-500 p-2 rounded">
+          <option value="en">English</option>
+          <option value="bn">বাংলা</option>
+          <option value="ar">العربية</option>
+        </select>
+      </nav>
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="hidden md:hidden bg-blue-600 text-white flex-col p-4 space-y-2">
+      <a href="#hero" class="hover:underline" data-i18n="nav.home">Home</a>
+      <a href="#news" class="hover:underline" data-i18n="nav.news">News</a>
+      <a href="#events" class="hover:underline" data-i18n="nav.events">Events</a>
+      <a href="#register" class="hover:underline" data-i18n="nav.register">Register</a>
+      <a href="#library" class="hover:underline" data-i18n="nav.library">Library</a>
+      <a href="#poll" class="hover:underline" data-i18n="nav.poll">Poll</a>
+      <button id="donate-btn-mobile" class="bg-white text-blue-500 px-4 py-2 rounded w-full text-left" data-i18n="nav.donate">Donate</button>
+      <select id="language-switch-mobile" class="bg-white text-blue-500 p-2 rounded w-full">
+        <option value="en">English</option>
+        <option value="bn">বাংলা</option>
+        <option value="ar">العربية</option>
+      </select>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="bg-blue-600 text-white py-12 md:py-20 text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="hero.title">Join Our Movement</h2>
+      <p class="text-base md:text-lg mb-6" data-i18n="hero.description">Together, we can build a stronger, more inclusive future for our nation. Join CPUF to make a difference.</p>
+      <a href="#register" class="bg-white text-blue-600 px-4 py-2 md:px-6 md:py-3 rounded font-semibold" data-i18n="hero.join">Become a Member</a>
+    </div>
+  </section>
+
+  <!-- News Section -->
+  <section id="news" class="py-12 md:py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center" data-i18n="news.title">Latest News</h2>
+      <div id="news-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- Events Section -->
+  <section id="events" class="py-12 md:py-16 bg-gray-200">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center" data-i18n="events.title">Events</h2>
+      <h3 class="text-xl md:text-2xl font-semibold mb-4" data-i18n="events.running">Running Events</h3>
+      <div id="running-event-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"></div>
+      <h3 class="text-xl md:text-2xl font-semibold mb-4" data-i18n="events.upcoming">Upcoming Events</h3>
+      <div id="upcoming-event-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"></div>
+      <h3 class="text-xl md:text-2xl font-semibold mb-4" data-i18n="events.past">Past Events</h3>
+      <div id="past-event-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- Register Section -->
+  <section id="register" class="py-12 md:py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center" data-i18n="register.title">Member Registration</h2>
+      <form id="registration-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="max-w-lg mx-auto space-y-4">
+        <input type="text" id="name" name="name" placeholder="Full Name" data-i18n-placeholder="register.name" class="w-full p-2 border rounded" required>
+        <input type="email" id="email" name="email" placeholder="Email" data-i18n-placeholder="register.email" class="w-full p-2 border rounded" required>
+        <input type="tel" id="phone" name="phone" placeholder="Phone" data-i18n-placeholder="register.phone" class="w-full p-2 border rounded" required>
+        <input type="text" id="id-number" name="idNumber" placeholder="Student ID/National ID" data-i18n-placeholder="register.id" class="w-full p-2 border rounded" required>
+        <input type="text" id="university" name="university" placeholder="University Name (if applicable)" data-i18n-placeholder="register.university" class="w-full p-2 border rounded">
+        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded w-full" data-i18n="register.submit">Register</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Library Section -->
+  <section id="library" class="py-12 md:py-16 bg-gray-200">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center" data-i18n="library.title">Study Resources</h2>
+      <div id="resource-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- Poll Section -->
+  <section id="poll" class="py-12 md:py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center" data-i18n="poll.title">Voting Poll</h2>
+      <div id="poll-list" class="max-w-2xl mx-auto"></div>
+    </div>
+  </section>
+
+  <!-- Donate Modal -->
+  <div id="donate-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white p-6 rounded-lg max-w-md w-full">
+      <h2 class="text-xl md:text-2xl font-bold mb-4" data-i18n="donate.title">Support Our Cause</h2>
+      <form id="donate-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="space-y-4">
+        <h3 class="text-lg font-semibold" data-i18n="donate.payment">Payment Methods</h3>
+        <p data-i18n="donate.bkash">bKash: +880 123 456 7890</p>
+        <p data-i18n="donate.nagad">Nagad: +880 123 456 7890</p>
+        <p data-i18n="donate.bank">Bank Account: CPUF, Account No: 123456789, Bank Name</p>
+        <h3 class="text-lg font-semibold" data-i18n="donate.regular">Regular Donation</h3>
+        <input type="tel" id="donor-phone" name="phone" placeholder="Phone Number" data-i18n-placeholder="donate.phone" class="w-full p-2 border rounded" required>
+        <input type="text" id="donor-transaction-id" name="transactionId" placeholder="Transaction ID" data-i18n-placeholder="donate.transaction" class="w-full p-2 border rounded" required>
+        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded w-full" data-i18n="donate.submit">Submit Donation</button>
+      </form>
+      <form id="anonymous-donate-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="space-y-4 mt-4">
+        <h3 class="text-lg font-semibold" data-i18n="donate.anonymous">Anonymous Donation</h3>
+        <input type="text" id="anonymous-transaction-id" name="transactionId" placeholder="Transaction ID" data-i18n-placeholder="donate.transaction" class="w-full p-2 border rounded" required>
+        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded w-full" data-i18n="donate.submit">Submit Donation</button>
+      </form>
+      <button id="close-donate-modal" class="mt-4 text-gray-600" data-i18n="donate.close">Close</button>
+    </div>
+  </div>
+
+  <!-- Join Event Modal -->
+  <div id="join-event-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white p-6 rounded-lg max-w-md w-full">
+      <h2 class="text-xl md:text-2xl font-bold mb-4" data-i18n="join.title">Join Event</h2>
+      <form id="join-event-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="space-y-4">
+        <input type="hidden" id="join-event-id" name="eventId">
+        <input type="text" id="join-name" name="name" placeholder="Full Name" data-i18n-placeholder="join.name" class="w-full p-2 border rounded" required>
+        <input type="email" id="join-email" name="email" placeholder="Email" data-i18n-placeholder="join.email" class="w-full p-2 border rounded" required>
+        <input type="tel" id="join-phone" name="phone" placeholder="Phone" data-i18n-placeholder="join.phone" class="w-full p-2 border rounded" required>
+        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded w-full" data-i18n="join.submit">Join Event</button>
+      </form>
+      <button id="close-join-modal" class="mt-4 text-gray-600" data-i18n="join.close">Close</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+      <p data-i18n="footer.copyright">© 2025 CPUF. All rights reserved.</p>
+      <p data-i18n="footer.contact">Contact us: info@cpuf.org | +880 123 456 7890</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

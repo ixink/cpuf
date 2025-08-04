@@ -1,0 +1,99 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.modal {
+  z-index: 50;
+}
+
+.notification {
+  z-index: 60;
+}
+
+input,
+textarea,
+select,
+button {
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.tab-btn {
+  transition: background-color 0.3s ease;
+}
+
+.tab-btn:hover {
+  background-color: #2563eb;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mobile Menu */
+#mobile-menu {
+  transition: all 0.3s ease;
+}
+
+#mobile-menu.hidden {
+  display: none;
+}
+
+#mobile-menu-btn svg {
+  transition: transform 0.3s ease;
+}
+
+#mobile-menu-btn.active svg {
+  transform: rotate(90deg);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
+  .grid-cols-1 {
+    grid-template-columns: 1fr;
+  }
+  #news-list,
+  #running-event-list,
+  #upcoming-event-list,
+  #past-event-list,
+  #resource-list {
+    grid-template-columns: 1fr;
+  }
+  .modal .max-w-md {
+    width: 90%;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 767px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  #news-list,
+  #running-event-list,
+  #upcoming-event-list,
+  #past-event-list,
+  #resource-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* RTL Support */
+body[dir="rtl"] .container {
+  text-align: right;
+}
+
+body[dir="rtl"] .flex {
+  flex-direction: row-reverse;
+}
+
+body[dir="rtl"] .space-x-4 > * + * {
+  margin-right: 1rem;
+  margin-left: 0;
+}
