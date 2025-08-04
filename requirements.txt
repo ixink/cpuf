@@ -3,4 +3,6 @@ Flask-Cors
 python-dotenv
 bcrypt
 PyJWT
+gunicorn
+
 Flask-Uploads
