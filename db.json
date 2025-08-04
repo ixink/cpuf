@@ -1,0 +1,27 @@
+{
+  "news": [
+    {
+      "id": "84c19f3e-bde6-4c51-ab0a-5fe6c874f1a9",
+      "title": "Code And Cafe",
+      "date": "2025-08-04",
+      "description": "owned by rayhan",
+      "image": "/uploads/images/b589b3f5-aa07-4f7d-8524-e2044a57e6df.jpg"
+    }
+  ],
+  "events": [],
+  "resources": [],
+  "joinEvents": [],
+  "registrations": [],
+  "admins": [
+    {
+      "id": "GsnVh1scU0aqOHOPCepRV",
+      "username": "admin",
+      "password": "$2b$10$iF/nW8VJQFRcRB0EPF.za.RFo8sKppIIfxIAMHvgJl91.OA0lZja."
+    }
+  ],
+  "polls": [],
+  "donations": [],
+  "settings": {
+    "logo": "/uploads/logos/43c77d48-9cfb-4c95-b20d-c6710ac71888.png"
+  }
+}
