@@ -16,7 +16,7 @@
     {
       "id": "GsnVh1scU0aqOHOPCepRV",
       "username": "admin",
-      "password": "$2b$10$iF/nW8VJQFRcRB0EPF.za.RFo8sKppIIfxIAMHvgJl91.OA0lZja."
+      "password": "$2y$10$JSgJ0AnT.OoKYKa9jkSQNuBiJMrgK8D37mXCpvMwzpsYAb0PfJFp."
     }
   ],
   "polls": [],
@@ -24,4 +24,5 @@
   "settings": {
     "logo": "/uploads/logos/43c77d48-9cfb-4c95-b20d-c6710ac71888.png"
   }
+
 }
