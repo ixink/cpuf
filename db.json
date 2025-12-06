@@ -2,9 +2,9 @@
   "news": [
     {
       "id": "84c19f3e-bde6-4c51-ab0a-5fe6c874f1a9",
-      "title": "Code And Cafe",
+      "title": "CPUF",
       "date": "2025-08-04",
-      "description": "owned by rayhan",
+      "description": "owned by icab",
       "image": "/uploads/images/b589b3f5-aa07-4f7d-8524-e2044a57e6df.jpg"
     }
   ],
@@ -16,7 +16,7 @@
     {
       "id": "GsnVh1scU0aqOHOPCepRV",
       "username": "admin",
-      "password": "$2y$10$JSgJ0AnT.OoKYKa9jkSQNuBiJMrgK8D37mXCpvMwzpsYAb0PfJFp."
+      "password": "$2y$10$gHY23t6nGblH8qTWprsYfO/omToHAhlKibI34SpEuawIR7verhzLS"
     }
   ],
   "polls": [],
@@ -26,3 +26,4 @@
   }
 
 }
+
